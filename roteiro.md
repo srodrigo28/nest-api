@@ -9,3 +9,8 @@ https://www.udemy.com/course/nestjs-completo/learn/lecture/47004869/?udfrontends
 ```
 https://www.udemy.com/course/nestjs-completo/learn/lecture/47024179/?udfrontends=true
 ```
+
+> * Ùltimo visto em curso
+```
+https://www.udemy.com/course/nestjs-completo/learn/lecture/47024233/?udfrontends=true
+```
