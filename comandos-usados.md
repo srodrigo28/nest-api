@@ -47,6 +47,16 @@ nest g service tasks
 }
 ```
 
+## Validar
+```
+npm install class-validator class-transformer
+```
+
+## Mapeamentos partial-types
+```
+npm install @nestjs/mapped-types
+```
+
 ## rotas
 ```
 http://localhost:3000/

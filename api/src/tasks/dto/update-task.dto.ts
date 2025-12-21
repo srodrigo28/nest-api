@@ -1,17 +1,10 @@
-import { IsOptional, IsString, MinLength } from "class-validator";
+import { IsBoolean, IsOptional } from "class-validator";
+import { CreateTaskDto } from "./create-task.dto";
+import { PartialType } from "@nestjs/mapped-types";
 
-export class UpdateTaskDto {
-
-    @IsOptional()
-    @IsString( {message: 'O nome deve ser uma string' } )
-    @MinLength(5, { message: 'O nome deve ter no mínimo 5 caracteres' })    
-    readonly name?: string;
+export class UpdateTaskDto extends PartialType(CreateTaskDto) {
 
     @IsOptional()
-    @IsString( {message: 'A descrição deve ser uma string' } )
-    @MinLength(10, { message: 'A descrição deve ter no mínimo 10 caracteres' }) 
-    readonly description?: string;
-
-    @IsOptional()
+    @IsBoolean({ message: 'O campo completed deve ser um booleano' })
     readonly completed?: boolean;
 }
