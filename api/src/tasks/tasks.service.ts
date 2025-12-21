@@ -7,9 +7,9 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 export class TasksService {
 
     private tasks: Tasks[] = [
-        { id: '1', name: 'NextJS', description: 'Learn NextJS framework', completed: true },
-        { id: '2', name: 'NestJS', description: 'Build backend with NestJS', completed: false },
-        { id: '3', name: 'Expo', description: 'Develop mobile app with Expo', completed: false },
+        { id: 1, name: 'NextJS', description: 'Learn NextJS framework', completed: true },
+        { id: 2, name: 'NestJS', description: 'Build backend with NestJS', completed: false },
+        { id: 3, name: 'Expo', description: 'Develop mobile app with Expo', completed: false },
     ];
     
     getTasks(){
@@ -20,8 +20,8 @@ export class TasksService {
         return this.tasks;
     }
 
-    findOne(id: string){
-        const task = this.tasks.find(task => task.id === id);
+    findOne(id: number){
+        const task = this.tasks.find(task => task.id === id )
 
         if(task){
             return task;
@@ -35,7 +35,7 @@ export class TasksService {
         const newId = this.tasks.length + 1;
         
         const newTask = { 
-            id: newId.toString(), 
+            id: newId, 
             ...createTaskDto, 
             completed: false 
         };
@@ -45,10 +45,10 @@ export class TasksService {
         return newTask;
     }
 
-    update(id: string, updateTaskDto: UpdateTaskDto){
+    update(id: number, updateTaskDto: UpdateTaskDto){
 
         const taskIndex = this.tasks.findIndex(
-            task => task.id === Number(id).toString());
+            task => task.id === id);
 
         if(taskIndex < 0) {
             console.log('Task not found for update with id:', id);
@@ -65,7 +65,7 @@ export class TasksService {
         
     }
 
-    delete(id: string){
+    delete(id: number){
 
         // Find the index of the task to be deleted
         const taskIndex = this.tasks.findIndex(task => task.id === id);
