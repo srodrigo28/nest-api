@@ -71,6 +71,11 @@ npx prisma format
 npx prisma migrate dev
 ```
 
+> * prisma generate
+```
+npx prisma generate
+```
+
 ## Visualize as tabelas e campos
 ```
 npx prisma studio

@@ -12,5 +12,5 @@ https://www.udemy.com/course/nestjs-completo/learn/lecture/47024179/?udfrontends
 
 > * Ùltimo visto em curso
 ```
-https://www.udemy.com/course/nestjs-completo/learn/lecture/47024233/?udfrontends=true
+https://www.udemy.com/course/nestjs-completo/learn/lecture/47024323/?udfrontends=true
 ```

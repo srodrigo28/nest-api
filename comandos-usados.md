@@ -60,7 +60,16 @@ npm install @nestjs/mapped-types
 ## rotas
 ```
 http://localhost:3000/
-    ```
+```
+
+## Prisma Module
+```
+nest g module prisma --no-spec
+```
+
+```
+nest g service prisma --no-spec
+```
 
 
 

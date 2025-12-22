@@ -1,10 +1,14 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { Tasks } from './entities/task.entity';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
+import { PrismaService } from 'src/prisma/prisma.service';
+
 @Injectable()
 export class TasksService {
+
+    constructor(private prisma: PrismaService) {}
 
     private tasks: Tasks[] = [
         { id: 1, name: 'NextJS', description: 'Learn NextJS framework', completed: true },
@@ -12,36 +16,40 @@ export class TasksService {
         { id: 3, name: 'Expo', description: 'Develop mobile app with Expo', completed: false },
     ];
     
-    getTasks(){
+    async getTasks(){
+        
         if(this.tasks.length === 0){
             throw new HttpException("Nenhuma tarefa encontrada.", 
                 HttpStatus.NOT_FOUND);
         }
-        return this.tasks;
+
+        return await this.prisma.task.findMany();
     }
 
-    findOne(id: number){
-        const task = this.tasks.find(task => task.id === id )
+    async findOne(id: number) {
+    // 1. Usamos await e findUnique (mais rápido para IDs)
+    const task = await this.prisma.task.findUnique({
+      where: { id } // Sintaxe curta para id: id
+    });
 
-        if(task){
-            return task;
-        }
+    // 2. Verificamos se a constante 'task' é nula
+    if (!task) {
+      // 3. Usamos o erro semântico do NestJS (mais limpo)
+      throw new NotFoundException(`Tarefa com ID ${id} não encontrada.`);
+    }
 
-        throw new HttpException("Essa tarefa não existe.", 
-            HttpStatus.NOT_FOUND);
+    return task;
+
     }
 
     create(createTaskDto: CreateTaskDto){
-        const newId = this.tasks.length + 1;
-        
-        const newTask = { 
-            id: newId, 
-            ...createTaskDto, 
-            completed: false 
-        };
-        
-        this.tasks.push(newTask);
-        
+        const newTask = this.prisma.task.create({
+            data: {
+                name: createTaskDto.name,
+                description: createTaskDto.description
+            },
+        });
+
         return newTask;
     }
 
