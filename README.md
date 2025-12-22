@@ -1,98 +1,109 @@
+
+# Especial Backend com NestJS e Prisma
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-all.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<p align="center">
+  Um backend construído com <a href="http://nestjs.com" target="_blank">NestJS</a>, <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> e <a href="https://www.prisma.io/" target="_blank">Prisma ORM</a> para uma aplicação eficiente e escalável.
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+<p align="center">
+  <img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" />
+  <img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" />
+  <img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" />
+  <a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg" alt="Discord" /></a>
+</p>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🚀 Sobre o Projeto
 
-## Project setup
+Este repositório contém o código-fonte do backend do projeto **Especial**. A aplicação utiliza o poder do NestJS para a arquitetura, TypeScript para a tipagem estática e o Prisma como ORM para uma comunicação fluida e segura com o banco de dados.
+
+## 🛠️ Instalação
+
+Siga os passos abaixo para configurar o ambiente de desenvolvimento local.
 
 ```bash
+# 1. Clone o repositório
+$ git clone https://seu-repositorio.com/especial-backend.git
+
+# 2. Navegue até o diretório do projeto
+$ cd especial-backend
+
+# 3. Instale as dependências
 $ npm install
 ```
 
-## Compile and run the project
+## ▶️ Executando a Aplicação
+
+Você pode executar a aplicação em diferentes modos, dependendo da sua necessidade.
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
+# Modo de desenvolvimento com hot-reload
 $ npm run start:dev
 
-# production mode
+# Modo de produção (requer build prévio)
 $ npm run start:prod
+
+# Build da aplicação para produção
+$ npm run build
 ```
 
-## Run tests
+## ✅ Testes
+
+O projeto está configurado com Jest para testes unitários e de ponta a ponta (E2E).
 
 ```bash
-# unit tests
+# Executar testes unitários
 $ npm run test
 
-# e2e tests
+# Executar testes em modo watch
+$ npm run test:watch
+
+# Executar testes de ponta a ponta (E2E)
 $ npm run test:e2e
 
-# test coverage
+# Gerar relatório de cobertura de testes
 $ npm run test:cov
 ```
 
-## Deployment
+## 🐘 Comandos do Prisma
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+O Prisma é utilizado para gerenciar o banco de dados. Abaixo estão os comandos mais comuns.
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Aplicar as migrations no banco de dados
+# Este comando cria o banco se não existir e aplica as migrações pendentes.
+$ npx prisma migrate dev
+
+# Gerar o Prisma Client após alterações no schema.prisma
+# O NestJS geralmente faz isso automaticamente com o `start:dev`.
+$ npx prisma generate
+
+# Abrir o Prisma Studio para visualizar e editar os dados do banco
+$ npx prisma studio
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+##  nest Comandos da CLI do NestJS
 
-## Resources
+Utilize a CLI do NestJS para gerar rapidamente os componentes da sua aplicação.
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+# Gerar um novo recurso (módulo, controller, service e DTOs)
+$ nest g resource nome-do-recurso
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+# Gerar um novo módulo
+$ nest g module nome-do-modulo
 
-## Support
+# Gerar um novo controller
+$ nest g controller nome-do-controller
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# Gerar um novo service
+$ nest g service nome-do-servico
+```
 
-## Stay in touch
+## 📄 Licença
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Este projeto é distribuído sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).

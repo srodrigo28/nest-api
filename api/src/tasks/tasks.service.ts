@@ -53,24 +53,26 @@ export class TasksService {
         return newTask;
     }
 
-    update(id: number, updateTaskDto: UpdateTaskDto){
+    async update(id: number, updateTaskDto: UpdateTaskDto){
+        // Verifica se a tarefa existe antes de atualizar
+        const findTask = await this.prisma.task.findFirst({
+            where: { id }
+        })
 
-        const taskIndex = this.tasks.findIndex(
-            task => task.id === id);
-
-        if(taskIndex < 0) {
-            console.log('Task not found for update with id:', id);
-            throw new HttpException("Essa tarefa não existe.", 
+        // Se a tarefa não for encontrada, lança uma exceção
+        if(!findTask){
+            throw new HttpException("Tarefa não encontrada.", 
             HttpStatus.NOT_FOUND);
         }
 
-        const taskItem = this.tasks[taskIndex];
-        
-        this.tasks[taskIndex] = { ...taskItem, ...updateTaskDto };
-        
-        // return "Tarefa atualizada com sucesso.";
-        return this.tasks[taskIndex];
-        
+        // Atualiza a tarefa com os novos dados
+        const task = await this.prisma.task.update({
+            where: { id },
+            data: updateTaskDto
+        });
+
+        // Retorna a tarefa atualizada
+        return task;
     }
 
     delete(id: number){
