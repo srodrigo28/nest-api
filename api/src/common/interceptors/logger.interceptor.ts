@@ -1,7 +1,8 @@
-import { CallHandler, ExecutionContext, NestInterceptor } from "@nestjs/common";
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nestjs/common";
 import { tap } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 
+@Injectable()
 export class LoggerInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> |
    Promise<Observable<any>> {
@@ -11,7 +12,7 @@ export class LoggerInterceptor implements NestInterceptor {
     const url = request.url;
     const now = Date.now();
 
-    console.log(`[REQUEST] ${method} ${url} - ${Date.now()} Inicio da requisição`);   
+    console.log(`[REQUEST] ${method} ${url} - ${now} Inicio da requisição`);   
 
     return next.handle().pipe(
         tap( () => {
