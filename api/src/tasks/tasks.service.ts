@@ -10,15 +10,9 @@ export class TasksService {
 
     constructor(private prisma: PrismaService) { }
 
-    private tasks: Tasks[] = [
-        { id: 1, name: 'NextJS', description: 'Learn NextJS framework', completed: true },
-        { id: 2, name: 'NestJS', description: 'Build backend with NestJS', completed: false },
-        { id: 3, name: 'Expo', description: 'Develop mobile app with Expo', completed: false },
-    ];
-
     async getTasks() {
 
-        if (this.tasks.length === 0) {
+        if ((await this.prisma.task.findMany()).length === 0) {
             throw new HttpException("Nenhuma tarefa encontrada.",
                 HttpStatus.NOT_FOUND);
         }
@@ -84,19 +78,23 @@ export class TasksService {
         return task;
     }
 
-    delete(id: number) {
+    async delete(id: number) {
 
-        // Find the index of the task to be deleted
-        const taskIndex = this.tasks.findIndex(task => task.id === id);
+        // Verifica se a tarefa existe antes de atualizar
+        const findTask = await this.prisma.task.findFirst({
+            where: { id }
+        })
 
-        // If task not found, throw an exception
-        if (taskIndex < 0) {
-            throw new HttpException("Essa tarefa não existe.",
+        // Se a tarefa não for encontrada, lança uma exceção
+        if (!findTask) {
+            throw new HttpException("Tarefa não encontrada.",
                 HttpStatus.NOT_FOUND);
         }
 
         // Remove the task from the array
-        this.tasks.splice(taskIndex, 1);
+        await this.prisma.task.delete({
+            where: { id }
+        });
 
         // Return a success message
         return "Tarefa deletada com sucesso.";
