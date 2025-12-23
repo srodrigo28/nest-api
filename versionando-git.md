@@ -6,7 +6,7 @@
 
 > * Existem dois tipos de tags, mas para releases, sempre use as anotadas (-a), pois elas guardam quem criou, a data e uma mensagem descritiva.
 ```
-git tag -a v1.0.0 -m "Release da primeira versão estável"
+git tag -a v2.0.0 -m "Release Prisma ORM Crud"
 ```
 
 ## 2. Enviar a Tag para o GitHub
@@ -14,7 +14,7 @@ Diferente dos commits, as tags não são enviadas automaticamente quando você d
 
 > * Enviar uma tag específica:
 ```
-git push origin v1.0.0
+git push origin v2.0.0
 ```
 
 > * Enviar todas as tags locais de uma vez:
@@ -39,7 +39,7 @@ git tag
 ### Ver detalhes de uma tag específica (mensagem e data):
 
 ```
-git show v1.0.0
+git show v2.0.0
 ```
 
 ## Excluir uma tag local (se você errou o nome):

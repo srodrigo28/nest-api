@@ -10,7 +10,7 @@ https://www.udemy.com/course/nestjs-completo/learn/lecture/47004869/?udfrontends
 https://www.udemy.com/course/nestjs-completo/learn/lecture/47024179/?udfrontends=true
 ```
 
-> * Ùltimo visto em curso
+> * Ùltimo visto em curso Paginação aula 28
 ```
-https://www.udemy.com/course/nestjs-completo/learn/lecture/47024323/?udfrontends=true
+https://www.udemy.com/course/nestjs-completo/learn/lecture/47024331/?udfrontends=true
 ```
