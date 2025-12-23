@@ -1,23 +1,31 @@
-import { ConflictException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, HttpException, HttpStatus, Injectable, NotFoundException, Query } from '@nestjs/common';
 import { Tasks } from './entities/task.entity';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
 import { PrismaService } from 'src/prisma/prisma.service';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class TasksService {
 
     constructor(private prisma: PrismaService) { }
 
-    async getTasks() {
+    async findAll(paginationDto: PaginationDto) {
+        
+        const { limit = 10, offset = 0 } = paginationDto;
 
         if ((await this.prisma.task.findMany()).length === 0) {
             throw new HttpException("Nenhuma tarefa encontrada.",
                 HttpStatus.NOT_FOUND);
         }
 
-        return await this.prisma.task.findMany();
+        const allTasks = await this.prisma.task.findMany({
+            skip: offset,
+            take: limit,
+        });
+
+        return allTasks;
     }
 
     async findOne(id: number) {
